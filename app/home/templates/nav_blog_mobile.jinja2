@@ -1,0 +1,46 @@
+<div>
+    <ul >
+    <div id="close-trigger"
+         hx-trigger="load"
+         hx-get="/mobile_close?current={{ current }}"
+         hx-target="#mobile"
+         hx-swap="innerHTML"></div>
+
+        <a class="button-gray {% if request.path == '/feed' %}current{% endif %}" 
+            href="/feed">
+            Feed
+        </a>
+
+        {% if current_user.is_authenticated %}
+        <li class="button-gray">
+            <a  
+                class="{% if request.path == '/blog' %}current{% endif %}" 
+                href="/blog">
+                Blog
+            </a>
+        </li>
+        <li class="button-gray">
+            <a  
+                class="{% if request.path == '/update' %}current{% endif %}" 
+                href="/update">
+                Update
+            </a>
+        </li>
+        <li class="button-gray">
+            <a  
+                class="{% if request.path == '/logout' %}current{% endif %}" 
+                href="/logout">
+                Logout
+            </a>
+        </li>
+        {% else %}
+        <   li><a href="/login" class="button-gray">Login</a></li>
+        {% endif %}
+        <a class="button-gray {% if request.path == '/feed' %}current{% endif %}" 
+            href="/projects">
+            Exit
+        </a>
+    </ul>
+</div>
+
+

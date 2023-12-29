@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Datakiin</title>
+    <meta name="Datakiin" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Place the first <script> tag in your HTML's <head> -->
+    {% assets 'css' %}
+      <link rel="stylesheet" href="{{ ASSET_URL }}">
+    {% endassets %}
+
+    
+</head>
+<body class="overflow-hidden h-screen">
+  <header class="bg-black text-white py-6">
+        <div class="container text-center">
+            <h1 class="text-4xl font-bold">DATAKIIN</h1>
+        </div>
+    </header>
+
+    <nav class="bg-black text-white">
+        <div class="container" id="nav">
+            <div class="navbar border-t border-b border-gray-300 pt-2 pb-2 flex justify-between ">
+            {% include "/nav_default.jinja2" %}
+            </div>
+        </div>
+    </nav>
+
+    <div class="container overflow-auto h-[60vh]" id="hero">
+        {% block layout %}{% endblock %}
+    </div>
+
+    <footer class="text-center mt-3">
+        <p>Get in touch at <a href="mailto:jon.gracias@gmail.com" class="text-blue-500">jon.gracias@gmail.com</a></p>
+        <a href="https://github.com/datakiin-core" class="inline-block mt-2" >
+        GITHUB
+        </a>
+        |
+        <a href="https://www.linkedin.com/in/jonathan-gracias-perez-b7577656" class="inline-block mt-2">
+        LINKEDIN
+        </a>
+        |
+        <a href="/phone" class="inline-block mt-2">
+        PHONE
+        </a>
+    </footer>
+
+  {% assets "js_home" %}
+      <script type="text/javascript" src="{{ ASSET_URL }}"></script>
+  {% endassets %}
+</body>
+</html>
+

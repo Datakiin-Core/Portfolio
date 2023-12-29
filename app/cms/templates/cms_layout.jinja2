@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ user_name }}</title>
+    {% assets "css" %}
+        <link rel="stylesheet" href="{{ ASSET_URL }}">
+    {% endassets %}
+</head>
+
+<body>
+    <div    id="blog-menu-trigger"
+              hx-trigger="load"
+              hx-get="/navbar_layout?layout=blog&current={{ request.path }}"
+              hx-target="#links"
+              hx-swap="innerHTML">
+    </div>
+    <div id="blog">
+      {% block blog %}{% endblock %}
+    </div>
+
+</body>
+
+</html>

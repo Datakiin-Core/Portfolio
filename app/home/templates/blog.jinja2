@@ -1,0 +1,24 @@
+{% extends "home_layout.jinja2" %}
+{% block layout %}
+    {% if is_authenticated %}
+        <div id="blog-trigger"
+                hx-trigger="load"
+                hx-get="/cms_blog"
+                hx-target="#blog-container"
+                hx-swap="innerHTML">
+        </div>
+        <div id="blog-container">
+            
+        </div>
+    {% else %}
+        <div id="blog-trigger"
+                hx-trigger="load"
+                hx-get="/login"
+                hx-target="#blog-container"
+                hx-swap="innerHTML">
+        </div>
+
+        <div id="blog-container">
+        </div>
+    {% endif %}
+{% endblock %}

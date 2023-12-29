@@ -1,0 +1,20 @@
+{% extends "nav_layout.jinja2" %}
+{% block nav %}
+<div class="text-right" id="default">
+    <a class="link-gray {% if request.path == '/' %}current{% endif %}"
+        href="/">
+        Home
+    </a>
+
+    <a class="link-gray {% if request.path == '/about' %}current{% endif %}"
+        href="/about">
+        About
+    </a>
+
+    <a class="link-gray {% if request.path == '/projects' %}current{% endif %}"
+        href="/projects">
+        Projects
+    </a>
+</div>
+{% endblock %}
+

@@ -1,0 +1,88 @@
+/* static/src/main.css */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom styles */
+body {
+  background-color: #000;
+  color: #fff;
+  font-family: 'MesloLGS NF', monospace;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  overflow: auto;
+}
+
+/* Custom Scrollbar Styles */
+/* Style for the scrollbar track */
+::-webkit-scrollbar {
+    width: 10px; /* Adjust the width of the scrollbar */
+    background: transparent; /* Transparent background */
+}
+
+/* Style for the scrollbar handle */
+::-webkit-scrollbar-thumb {
+    background: #888; /* Scroll handle color */
+    border-radius: 0; /* Square corners */
+}
+
+/* Style for the scrollbar handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Scroll handle color on hover */
+}
+
+@layer components {
+  .link-gray {
+    @apply text-gray-400 hover:text-gray-200 px-3 py-2;
+  }
+  .button-gray {
+    @apply bg-black text-white border-t border-b border-white text-lg py-6  hover:bg-gray-800 block text-center;
+  }
+  .auth-container {
+    @apply max-w-md w-full mx-auto py-4;
+}
+
+}
+
+.current {
+  color: #ffffff; 
+  font-weight: bold;
+}
+
+.fade-me-out{
+  color: red;
+  background-color: aquamarine;
+}
+
+.fade-me-out.htmx-swapping {
+  opacity: 0;
+  transition: opacity 1s ease-out;
+  color: red;
+  background-color: aquamarine;
+}
+
+.smooth {
+  transition: all 1s ease-in;
+}
+
+#fade-me-in.htmx-added {
+  opacity: 0;
+}
+#fade-me-in {
+  opacity: 1;
+  transition: opacity 1s ease-out;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

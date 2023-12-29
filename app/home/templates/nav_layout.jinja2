@@ -1,0 +1,21 @@
+<div class="text-left">
+    <a href="/login" class="text-gray-400">Login</a>
+</div>
+
+<div id="links" class="hidden sm:block">
+    <!-- This will be hidden on screens smaller than 640px by default -->
+    {% block nav %}{% endblock %}
+</div>
+
+<div id="mobile" class="block sm:hidden">
+    <!-- This will be visible on screens smaller than 640px and hidden on larger screens -->
+    <div class="text-right" id="mobile">
+        <a  class="link-gray"
+            hx-get="/nav_mobile?current={{ request.path }}&layout={{ request.path }}"
+            hx-target="#hero"
+            hx-swap="innerHTML">
+            MENU
+        </a>
+    </div>
+</div>
+
