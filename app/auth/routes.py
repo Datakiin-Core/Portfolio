@@ -90,44 +90,44 @@ def update() -> Response:
         body="Update Password.",
     )
 
-@auth_blueprint.route('/test', methods=["GET"])
-def test() -> Response:
-    """ test """
-    print("test!!!!!")
-    return render_template("test.jinja2")
-
-@auth_blueprint.route('/login', defaults={'path': ''})
-@auth_blueprint.route("/<path:path>", methods=["GET", "POST"])
-def login(path) -> Response:
+@auth_blueprint.route('/login', methods=["GET", "POST"])
+def login() -> Response:
     """
     LOG-IN PAGE
 
     GET: Serve Log-in page.
-    POST: Validate form and redirect user to home
+    POST: Validate form and redirect user to home.
 
     :returns: Response
     """
+    # Redirect authenticated users to the home page
     if current_user.is_authenticated:
-        return redirect('/blog')
+        return redirect('/')
+
     form = LoginForm()
+    next_path = request.args.get('path', '')  # Fetch path from query parameter
 
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.user_email.data).first()
         if user and user.check_password(password=form.user_password.data):
             login_user(user)
-            next_page = request.args.get("next")
-            return redirect(next_page or ('/blog'))
-        flash("Invalid username/password combination")
+            return redirect(form.next.data or '/')
+        else:
+            flash("Invalid username/password combination")
 
+    # Set the next field only on GET request
+    if request.method == 'GET':
+        form.next.data = next_path
 
     return render_template(
         "auth_login.jinja2",
-        path=path,
         form=form,
         title="Log In",
         template="login-page",
         body="Log in with your User account.",
+        next_path=next_path
     )
+
 
 @auth_blueprint.route("/logout", methods=["GET"])
 def logout() -> Response:
@@ -137,7 +137,7 @@ def logout() -> Response:
     if current_user.is_authenticated:
         logout_user()
 
-    return redirect('/login')
+    return redirect('/')
 
 @login_manager.user_loader
 def load_user(user_id: int) -> Optional[User]:

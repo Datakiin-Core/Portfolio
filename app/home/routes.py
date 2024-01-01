@@ -24,7 +24,8 @@ def welcome():
     """ HOME PAGE """
     user_name = get_username()
     svg = svg_github()
-    return render_template('home.jinja2', user_name=user_name, svg=Markup(svg))
+    is_authenticated = current_user.is_authenticated
+    return render_template('home.jinja2', user_name=user_name, svg=Markup(svg), is_authenticated=is_authenticated)
 
 @main_blueprint.route('/navbar_layout')
 def navbar_layout():
@@ -66,7 +67,10 @@ def project():
     """ DYNAMIC DISPLAY """
     user_name = get_username()
     svg = svg_github()
-    return render_template('projects.jinja2', user_name=user_name, svg=svg)
+    is_authenticated = current_user.is_authenticated
+    return render_template('projects.jinja2', user_name=user_name,
+                                              svg=svg,
+                                              is_authenticated=is_authenticated)
 
 
 @main_blueprint.route('/about')
@@ -74,15 +78,20 @@ def about():
     """ DYNAMIC DISPLAY """
     user_name = get_username()
     svg = svg_github()
-    return render_template('about.jinja2', user_name=user_name, svg=svg)
-
-@main_blueprint.route('/blog')
-def blog():
-    """ DYNAMIC DISPLAY """
-    user_name = get_username()
-    svg = svg_github()
     is_authenticated = current_user.is_authenticated
-    return render_template('blog.jinja2', user_name=user_name, svg=svg, is_authenticated=is_authenticated)
+    return render_template('about.jinja2', user_name=user_name,
+                                           svg=svg,
+                                           is_authenticated=is_authenticated)
+
+# @main_blueprint.route('/blog')
+# def blog():
+#     """ DYNAMIC DISPLAY """
+#     user_name = get_username()
+#     svg = svg_github()
+#     is_authenticated = current_user.is_authenticated
+#     return render_template('blog.jinja2',user_name=user_name,
+#                                          svg=svg,
+#                                          is_authenticated=is_authenticated)
 
 def get_username():
     """ Get Username """

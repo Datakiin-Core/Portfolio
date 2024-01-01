@@ -4,9 +4,12 @@
   <div class="max-w-md mx-auto py-4 sm:max-w-sm">
 
     <h1 class="text-3xl font-semibold text-center text-gray-600 mb-6">Log In</h1>
+      <!-- Hidden field for path -->
+      <h1>path {{path}}</h1>
 
     <form method="POST" action="/login" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
       {{ form.csrf_token }}
+      {{ form.next }}
 
       <fieldset required type="email" class='block text-gray-700 text-sm font-bold mb-2' id="user_email">
         {{ form.user_email.label }}

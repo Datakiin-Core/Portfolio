@@ -23,12 +23,12 @@ def create_app():
     with app.app_context():
         from .home.routes import main_blueprint
         from .auth.routes import auth_blueprint
-        from .cms.routes import cms_blueprint
+        from .blog.routes import blog_blueprint
         from .assets import compile_static_assets
 
         app.register_blueprint(main_blueprint)
         app.register_blueprint(auth_blueprint)
-        app.register_blueprint(cms_blueprint)
+        app.register_blueprint(blog_blueprint)
 
         for blueprint_name, blueprint in app.blueprints.items():
             print(f"Blueprint Name: {blueprint_name}, Blueprint Object: {blueprint}")

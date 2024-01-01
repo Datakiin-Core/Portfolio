@@ -1,6 +1,6 @@
 """Sign-up & log-in forms."""
 from flask_wtf import FlaskForm
-from wtforms import PasswordField, StringField, SubmitField, validators
+from wtforms import PasswordField, StringField, SubmitField, validators, HiddenField
 from wtforms.validators import DataRequired, Email, EqualTo, Length, Optional
 
 class SignupForm(FlaskForm):
@@ -71,5 +71,6 @@ class LoginForm(FlaskForm):
             Email(message="Enter a valid email.")
         ]
     )
+    next = HiddenField()  # Hidden field to store the redirect URL
     user_password = PasswordField("Password", validators=[DataRequired()])
     submit_button = SubmitField("Log In")

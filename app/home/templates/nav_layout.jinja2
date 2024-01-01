@@ -1,5 +1,10 @@
 <div class="text-left">
-    <a href="/login" class="text-gray-400">Login</a>
+    {% if is_authenticated %}
+    <h2 class="text-gray-100">{{ user_name }}</h2>
+    {% else %}
+    <a hx-get="/login?path={{ request.path }}" hx-swap="innerHTML" hx-target="#hero" class="text-gray-400">Login</a>
+    {% endif %}
+
 </div>
 
 <div id="links" class="hidden sm:block">
