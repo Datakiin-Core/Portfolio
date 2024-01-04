@@ -11,13 +11,6 @@ body {
   font-family: 'MesloLGS NF', monospace;
 }
 
-.container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 2rem;
-  overflow: auto;
-}
-
 /* Custom Scrollbar Styles */
 /* Style for the scrollbar track */
 ::-webkit-scrollbar {
@@ -45,9 +38,16 @@ body {
   }
   .auth-container {
     @apply max-w-md w-full mx-auto py-4;
+  }
+  .navbar {
+    @apply max-w-[600px] flex justify-between items-center mx-auto p-1 overflow-auto bg-black text-white border-t border-b border-gray-300;
+  }
+  .container {
+    @apply max-w-[600px] mx-auto p-8 overflow-auto;
+  }
 }
 
-}
+
 
 .current {
   color: #ffffff; 

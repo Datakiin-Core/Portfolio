@@ -12,3 +12,17 @@ if (alertButton){
 
   }, false);
 }
+
+function toggleButtons(button1, button2) {
+  var userMenu = document.getElementById(button1);
+  var closeUserMenu = document.getElementById(button2);
+
+  // Toggle visibility of the buttons
+  if (userMenu.style.display === 'none') {
+      userMenu.style.display = 'block';
+      closeUserMenu.style.display = 'none';
+  } else {
+      userMenu.style.display = 'none';
+      closeUserMenu.style.display = 'block';
+  }
+}

@@ -5,6 +5,7 @@ from flask_sqlalchemy import SQLAlchemy
 from config.config import Config
 from flask_session import Session
 
+
 db = SQLAlchemy()
 login_manager = LoginManager()
 session = Session()
@@ -21,14 +22,20 @@ def create_app():
 
     # pylint: disable=C0415
     with app.app_context():
-        from .home.routes import main_blueprint
+        from .routes import main_blueprint
+        from .home.routes import home_blueprint
         from .auth.routes import auth_blueprint
         from .blog.routes import blog_blueprint
+        from .about.routes import about_blueprint
+        from .projects.routes import projects_blueprint
         from .assets import compile_static_assets
 
         app.register_blueprint(main_blueprint)
+        app.register_blueprint(home_blueprint)
         app.register_blueprint(auth_blueprint)
         app.register_blueprint(blog_blueprint)
+        app.register_blueprint(about_blueprint)
+        app.register_blueprint(projects_blueprint)
 
         for blueprint_name, blueprint in app.blueprints.items():
             print(f"Blueprint Name: {blueprint_name}, Blueprint Object: {blueprint}")

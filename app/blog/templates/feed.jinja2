@@ -1,0 +1,26 @@
+{% extends "blog_layout.jinja2" %}
+{% block layout %}
+    <div id="feed">
+        <button class="article-card">
+            <!-- Large Picture -->
+            <div class="w-full">
+                <img class="w-full h-auto" src={{missing_img}} alt="Article Image">
+            </div>
+            <!-- Title Bar -->
+            <div class="bg-gray-100 p-4">
+                <h1 class="text-6xl">Blog</h1>
+                <a class="text-base md:text-lg lg:text-xl font-normal text-gray-700 dark:text-gray-300 leading-relaxed my-4 text-right block" href="/blog">Share</a>
+            </div>
+
+            <!-- Final Bar with Author and Share Button -->
+            <div class="flex justify-between items-center bg-gray-200 p-4">
+                <p class="text-base md:text-lg font-normal text-gray-700">Author</p>
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    Share
+                </button>
+            </div>
+        </button>
+
+
+    </div>
+{% endblock %}

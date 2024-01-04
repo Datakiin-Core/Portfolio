@@ -1,6 +1,5 @@
-{% extends "auth_layout.jinja2" %}
-
-{% block auth %}
+{% extends  extension  %}
+{% block layout %}
   <div class="max-w-md mx-auto py-4 sm:max-w-sm">
 
     {% for message in get_flashed_messages() %}

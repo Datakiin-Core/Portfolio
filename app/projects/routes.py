@@ -1,4 +1,4 @@
-""" ROUTES FOR HOME """
+""" ROUTES FOR BLOG """
 #pylint: disable=E0401
 from flask import (
     render_template,
@@ -11,21 +11,20 @@ from flask_login import(
     current_user
 )
 
-home_blueprint= Blueprint(
-    "home",
+projects_blueprint= Blueprint(
+    "projects",
     __name__,
     template_folder="templates",
     static_folder="static",
 )
 
-@home_blueprint.route('/', methods=['GET', 'POST'])
-def home():
+@projects_blueprint.route('/projects', methods=['GET', 'POST'])
+def projects():
     """ DYNAMIC DISPLAY """
     print(f"This is {request.path}")
     is_authenticated = current_user.is_authenticated
     missing_img = url_for('static', filename='src/images/missing_img.svg')
-    
-    return render_template('home.jinja2',
+    return render_template('projects.jinja2',
                            is_authenticated=is_authenticated,
                            missing_img=missing_img)
 
