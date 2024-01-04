@@ -1,4 +1,4 @@
-{% extends  extension  %}
+{% extends  extension or "home_layout.jinja2" %}
 {% block layout %}
   <div class="max-w-md mx-auto py-4 sm:max-w-sm">
 
@@ -54,7 +54,7 @@
     </form>
 
     <div class="text-center text-sm text-gray-600 mt-4">
-      <span><a class="text-gray-600 hover:text-gray-200" href="{{ url_for('auth.login') }}">Exit</a></span>
+      <span><a class="text-gray-600 hover:text-gray-200" href="/close">Exit</a></span>
     </div>
   </div>
 {% endblock %}

@@ -2,7 +2,7 @@
     <div class="text-left">
         
     </div>
-
+    {# Redunancy is important to stop links from loading - prevents nav flashing #}
     <div class="sm:block hidden" id="right-side-large">
         <div class="flex justify-between items-center">
             <div class="text-left" id="links">
@@ -28,12 +28,16 @@
         </div>
     </div>
 
-    <div class="block sm:hidden" id="right-side-small">
-        <div class="link-gray text-right" id="user_menu"
-        hx-get="/layout?menu=mobile_menu"
-        hx-target="#links"
-        hx-swap="innerHTML">
-        Menu
+    <div class="sm:hidden block" id="right-side-small">
+        <div class="link-gray text-right block" id="mobile_menu"
+            hx-get="/layout?menu=mobile"
+            hx-target="#hero"
+            hx-swap="innerHTML"
+            onclick="toggleButtons('mobile_menu', 'close_mobile_menu')">
+            Menu
         </div>
+        <a class="link-gray text-right hidden" id="close_mobile_menu"  href="/close">
+            Close
+        </a>
     </div>
 </div>

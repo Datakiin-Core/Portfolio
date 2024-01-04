@@ -18,7 +18,7 @@ def create_app():
     # Initialize Plugins
     db.init_app(app)
     login_manager.init_app(app)
-    session.init_app(app)
+    session.init_app(app)  
 
     # pylint: disable=C0415
     with app.app_context():
@@ -28,6 +28,7 @@ def create_app():
         from .blog.routes import blog_blueprint
         from .about.routes import about_blueprint
         from .projects.routes import projects_blueprint
+        from .error.routes import error_blueprint
         from .assets import compile_static_assets
 
         app.register_blueprint(main_blueprint)
@@ -36,6 +37,7 @@ def create_app():
         app.register_blueprint(blog_blueprint)
         app.register_blueprint(about_blueprint)
         app.register_blueprint(projects_blueprint)
+        app.register_blueprint(error_blueprint)
 
         for blueprint_name, blueprint in app.blueprints.items():
             print(f"Blueprint Name: {blueprint_name}, Blueprint Object: {blueprint}")

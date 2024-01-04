@@ -34,7 +34,7 @@ body {
     @apply text-gray-400 hover:text-gray-200 px-3 py-2;
   }
   .button-gray {
-    @apply bg-black text-white border-t border-b border-white text-lg py-6  hover:bg-gray-800 block text-center;
+    @apply bg-black text-white border-t border-b border-white text-lg py-6  hover:bg-gray-800 block text-center w-full;
   }
   .auth-container {
     @apply max-w-md w-full mx-auto py-4;

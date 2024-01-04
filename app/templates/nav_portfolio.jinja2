@@ -1,6 +1,14 @@
-<div id="default">
+<div id="default" class="sm:block hidden">
     {% for link in menu_links %}
     <a class="link-gray" href="{{ link.links }}">{{ link.name }}</a>
     {% endfor %}
+</div>
+
+<div id="mobile" class="sm:hidden block">
+    <div class="flex flex-col items-center border border-white" >
+    {% for link in menu_links %}
+    <a class="button-gray" href="{{ link.links }}">{{ link.name }}</a>
+    {% endfor %}
+    </div>
 </div>
 

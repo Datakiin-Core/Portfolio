@@ -4,6 +4,8 @@ from flask import (
     render_template,
     Blueprint,
     request,
+    redirect,
+    session
 )
 from flask_login import(
     current_user
@@ -27,8 +29,6 @@ login        = MenuAsset(name="Login"    ,links="/login")
 logout       = MenuAsset(name="Logout"   ,links="/logout")
 signup       = MenuAsset(name="Signup"   ,links="/signup")
 password     = MenuAsset(name="Password" ,links="/update")
-user         = MenuAsset(name="User Menu",links="close")
-close        = MenuAsset(name="Close"    ,links="user")
 exit_project = MenuAsset(name="Exit"     ,links="/projects")
 
 default_menu = []
@@ -36,27 +36,45 @@ default_menu = []
 @main_blueprint.route('/layout')
 def layout():
     """ DYNAMIC MENU """
-
-    next_page = request.args.get('next_page', "/feed")
-    print(next_page)
-    next = MenuAsset(name="Exit"     ,links="/feed")
     menu = request.args.get('menu', 'default')
     is_authenticated = current_user.is_authenticated
     menu_links = []
     if menu == 'default':
         menu_links = [home, about, projects]
+    if menu == 'mobile':
+        if is_authenticated:
+            menu_links = [home, about, projects, logout, password]
+        else:
+            menu_links = [home, about, projects, login, signup]
     if menu == 'blog':
-        menu_links = [feed, blog, exit_project]
+        if is_authenticated:
+            menu_links = [feed, blog, exit_project]
+        else:
+            menu_links = [feed, blog, exit_project]
+    if menu == 'blog_mobile':
+        if is_authenticated:
+            menu_links = [feed, blog, exit_project, logout, password]
+        else:
+            menu_links = [feed, blog, exit_project, login, signup]
     if menu == 'user_menu':
         if is_authenticated:
             menu_links = [logout, password]
         else:
             menu_links = [login, signup]
 
-
     return render_template('nav_portfolio.jinja2',
-                            is_authenticated=is_authenticated, menu_links=menu_links, next=next)
+                            is_authenticated=is_authenticated, menu_links=menu_links)
 
+@main_blueprint.route('/close')
+def close():
+    """ Redirect to the previous page """
+    if 'history' in session and len(session['history']) > 1:
+        # Redirect to the second-to-last URL in history
+        previous_url = session['history'][-1]
+        return redirect(previous_url)
+    else:
+        # Redirect to a default page if no history is available
+        return redirect('/error') 
 
 def get_username():
     """ Get Username """
@@ -64,7 +82,6 @@ def get_username():
         user_name = current_user.name
     else:
         user_name = "Guest"
-
     return user_name
 
 def svg_github():

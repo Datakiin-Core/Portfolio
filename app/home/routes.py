@@ -4,7 +4,8 @@ from flask import (
     render_template,
     Blueprint,
     request,
-    url_for
+    url_for,
+    session
 )
 
 from flask_login import(
@@ -24,11 +25,24 @@ def home():
     print(f"This is {request.path}")
     is_authenticated = current_user.is_authenticated
     missing_img = url_for('static', filename='src/images/missing_img.svg')
-    
+    hist = ', '.join(session['history'])
+    print(f"History: {hist}")
     return render_template('home.jinja2',
                            is_authenticated=is_authenticated,
                            missing_img=missing_img)
 
+@home_blueprint.errorhandler(404)
+def page_not_found(e):
+    # You can use a different template for 404 errors if you prefer
+    return render_template('404.jinja2'), 404
+
+@home_blueprint.before_request
+def track_history():
+    if 'history' not in session:
+        session['history'] = []
+    session['history'].append(request.url)
+    if len(session['history']) > 10:  # Limit history length
+        session['history'].pop(0)
 
 def get_username():
     """ Get Username """

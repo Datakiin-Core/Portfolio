@@ -1,18 +1,6 @@
 {% extends "blog_layout.jinja2" %}
 {% block layout %}
-    {% if is_authenticated %}
-        <div id="blog-container">
-            {% include "/cms_blog.jinja2" %}
-        </div>
-    {% else %}
-        <div id="blog-trigger"
-                hx-trigger="load"
-                hx-get="/login"
-                hx-target="#blog-container"
-                hx-swap="innerHTML">
-        </div>
-
-        <div id="blog-container">
-        </div>
-    {% endif %}
+    <div id="blog-container">
+        {% include "/cms_blog.jinja2" %}
+    </div>
 {% endblock %}

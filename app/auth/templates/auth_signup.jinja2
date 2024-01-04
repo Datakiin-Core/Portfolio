@@ -1,3 +1,5 @@
+  {% extends  extension or "home_layout.jinja2" %}
+  {% block layout %}
   <div class="max-w-sm mx-auto py-8">
 
     {% for message in get_flashed_messages() %}
@@ -70,4 +72,9 @@
     <div class="text-center text-sm text-gray-600 mt-4">
       <a class="text-gray-600 hover:text-gray-200" href="{{ url_for('auth.login') }}"><span>Already have an account? Log in.</span></a>
     </div>
+
+    <div class="text-center text-sm text-gray-600 mt-4">
+      <span><a class="text-gray-600 hover:text-gray-200" href="/close">Exit</a></span>
+    </div>
   </div>
+  {% endblock %}

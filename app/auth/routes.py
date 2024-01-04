@@ -8,7 +8,7 @@ from flask import (
     redirect,
     render_template,
     request,
-    url_for
+    url_for,
     )
 
 from flask_login import (
@@ -48,7 +48,7 @@ def signup() -> Response:
             db.session.commit()
             login_user(user)
             print(user)
-            return redirect('/blog')
+            return redirect('/close')
         flash("A user already exists with that email address.")
 
     return render_template(
@@ -106,23 +106,17 @@ def login() -> Response:
     """
     # Redirect authenticated users to the home page
     if current_user.is_authenticated:
-        print(f"Redirect: {current_user.is_authenticated}")
-        return redirect('/')
+        return redirect('/close')
 
     form = LoginForm()
-    next_path = request.args.get('path', '')  # Fetch path from query parameter
 
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.user_email.data).first()
         if user and user.check_password(password=form.user_password.data):
             login_user(user)
-            return redirect(form.next.data or '/')
+            return redirect('/close')
 
         flash("Invalid username/password combination")
-
-    # Set the next field only on GET request
-    if request.method == 'GET':
-        form.next.data = next_path
 
     return render_template(
         "auth_login.jinja2",
@@ -130,7 +124,6 @@ def login() -> Response:
         title="Log In",
         template="login-page",
         body="Log in with your User account.",
-        next_path=next_path
     )
 
 
@@ -142,7 +135,7 @@ def logout() -> Response:
     if current_user.is_authenticated:
         logout_user()
 
-    return redirect('/')
+    return redirect('/close')
 
 @login_manager.user_loader
 def load_user(user_id: int) -> Optional[User]:

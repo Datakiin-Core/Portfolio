@@ -3,6 +3,7 @@
         
     </div>
 
+    {# Redunancy is important to stop links from loading - prevents nav flashing #}
     <div class="sm:block hidden" id="right-side-large">
         <div class="flex justify-between items-center">
             <div class="text-left" id="links">
@@ -10,7 +11,6 @@
             <a class="link-gray" href="/blog">Blog</a>
             <a class="link-gray" href="/projects">Exit</a>
             </div>
-
             <div class="link-gray text-right block" id="user_menu"
                 hx-get="/layout?menu=user_menu"
                 hx-target="#links"
@@ -27,15 +27,17 @@
             </div>
         </div>
     </div>
-    <div class="link-gray text-right block" id="mobile_menu"
-        hx-get="/layout?menu=blog&next_page={{ request.path }}"
-        hx-target="#hero"
-        hx-swap="innerHTML"
-        onclick="toggleButtons('mobile_menu', 'close_mobile_menu')">
-        Menu
+
+    <div class="sm:hidden block" id="right-side-small">
+        <div class="link-gray text-right block" id="mobile_menu"
+            hx-get="/layout?menu=blog_mobile"
+            hx-target="#hero"
+            hx-swap="innerHTML"
+            onclick="toggleButtons('mobile_menu', 'close_mobile_menu')">
+            Menu
+        </div>
+        <a class="link-gray text-right hidden" id="close_mobile_menu"  href="/close">
+            Close
+        </a>
     </div>
-    {# Add session to the layout file and use variable everywhere.#}
-    <a class="link-gray text-right hidden" id="close_mobile_menu"  href="{{ next }}">
-        Close
-    </a>
 </div>

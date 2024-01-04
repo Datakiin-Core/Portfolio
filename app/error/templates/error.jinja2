@@ -1,0 +1,22 @@
+{% extends "home_layout.jinja2" %}
+{% block title %}
+Error Page
+{% endblock %}
+
+{% block layout %}
+<div id="error">
+    <h1>Error Occurred</h1>
+    <p>Sorry, an unexpected error has occurred.</p>
+    <p>Please try again later or contact support if the problem persists.</p>
+    
+    <!-- Optional: Display error details if available -->
+    {% if error_message %}
+        <div class="error-details">
+            <p><strong>Error Details:</strong> {{ error_message }}</p>
+        </div>
+    {% endif %}
+
+    <!-- Optional: Link to go back to home page or previous page -->
+    <p><a class="link-gray" href="{{ url_for('home.home') }}">Go to Home Page</a></p>
+</div>
+{% endblock %}
