@@ -1,6 +1,8 @@
 {% extends "home_layout.jinja2" %}
 {% block layout %}
+
 <div id="home">
+
     <header class="text-left">
         <h1 class="text-4xl font-bold">Welcome to My World</h1>
         <p class="text-xl mt-2">
@@ -10,9 +12,6 @@
         </p>
     </header>
 
-    <section>
-    </section>
-
     <section class="mt-4">
         <h2 class="text-3xl font-semibold mb-4">Featured Projects</h2>
         <p>Discover my recent work including various web applications, collaborations,
@@ -21,9 +20,10 @@
     </section>
 
     <section class="mt-8">
-        <h2 class="text-3xl font-semibold mb-4">Start Your Blog</h2>
-        <p>Interested in blogging? Join our community! Simply log in and start sharing your thoughts and experiences with the world using our user-friendly CMS portal.</p>
+        <p class="text-gray-400">
+        Interested in blogging? Join our community!<a href="/signup" class="text-gray-100"> Sign up today!</a></p>
         <!-- Link to the login or sign-up page -->
     </section>
+
 </div>
 {% endblock %}

@@ -59,6 +59,8 @@ def signup() -> Response:
         body="Sign up for a user account.",
     )
 
+
+
 @auth_blueprint.route("/update", methods=["GET", "POST"])
 def update() -> Response:
     """ 
@@ -68,6 +70,7 @@ def update() -> Response:
     POST: Validate form, update password, redirect user to home
     """
     form = UpdateForm()
+    extension = request.args.get('extension', 'home_layout.jinja2')
     if form.validate_on_submit():
         if current_user.is_authenticated:
             print("Setting User")
@@ -88,6 +91,7 @@ def update() -> Response:
         form=form,
         template="upate-page",
         body="Update Password.",
+        extension=extension,
     )
 
 @auth_blueprint.route('/login', methods=["GET", "POST"])
@@ -102,6 +106,7 @@ def login() -> Response:
     """
     # Redirect authenticated users to the home page
     if current_user.is_authenticated:
+        print(f"Redirect: {current_user.is_authenticated}")
         return redirect('/')
 
     form = LoginForm()
@@ -112,8 +117,8 @@ def login() -> Response:
         if user and user.check_password(password=form.user_password.data):
             login_user(user)
             return redirect(form.next.data or '/')
-        else:
-            flash("Invalid username/password combination")
+
+        flash("Invalid username/password combination")
 
     # Set the next field only on GET request
     if request.method == 'GET':

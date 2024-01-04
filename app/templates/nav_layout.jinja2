@@ -1,0 +1,39 @@
+<div class="navbar" id="nav">
+    <div class="text-left">
+        
+    </div>
+
+    <div class="sm:block hidden" id="right-side-large">
+        <div class="flex justify-between items-center">
+            <div class="text-left" id="links">
+            <a class="link-gray" href="/">Home</a>
+            <a class="link-gray" href="/about">About</a>
+            <a class="link-gray" href="/projects">Projects</a>
+            </div>
+
+            <div class="link-gray text-right block" id="user_menu"
+                hx-get="/layout?menu=user_menu"
+                hx-target="#links"
+                hx-swap="innerHTML"
+                onclick="toggleButtons('user_menu', 'close_user_menu')">
+                User Menu
+            </div>
+            <div class="link-gray text-right hidden" id="close_user_menu"
+                hx-get="/layout?menu=default"
+                hx-target="#links"
+                hx-swap="innerHTML"
+                onclick="toggleButtons('close_user_menu', 'user_menu')">
+                Close
+            </div>
+        </div>
+    </div>
+
+    <div class="block sm:hidden" id="right-side-small">
+        <div class="link-gray text-right" id="user_menu"
+        hx-get="/layout?menu=mobile_menu"
+        hx-target="#links"
+        hx-swap="innerHTML">
+        Menu
+        </div>
+    </div>
+</div>

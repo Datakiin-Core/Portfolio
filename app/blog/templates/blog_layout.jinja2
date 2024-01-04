@@ -17,21 +17,19 @@
 <body class="overflow-hidden h-screen">
   <header class="bg-black text-white py-6">
         <div class="container text-center">
-            <h1 class="text-4xl font-bold">DATAKIIN</h1>
+            <h1 class="text-5xl font-bold tracking-tighter">DATAKIIN</h1>
         </div>
     </header>
     
-    <nav class="bg-black text-white">
-        <div class="container" id="nav">
-            <div class="navbar border-t border-b border-gray-300 pt-2 pb-2 flex justify-between ">
-            {% include "/nav_default.jinja2" %}
-            </div>
-        </div>
+    <nav>
+        {% include "/nav_blog.jinja2" %}
     </nav>
 
     <div class="container overflow-auto h-[60vh]" id="hero">
         {% block layout %}{% endblock %}
     </div>
+
+
 
     <footer class="text-center mt-3">
         <p>Get in touch at <a href="mailto:jon.gracias@gmail.com" class="text-blue-500">jon.gracias@gmail.com</a></p>

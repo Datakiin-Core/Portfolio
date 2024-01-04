@@ -1,12 +1,5 @@
-{% extends "home_layout.jinja2" %}
+{% extends "blog_layout.jinja2" %}
 {% block layout %}
-    <div    id="blog-menu-trigger"
-              hx-trigger="load"
-              hx-get="/navbar_layout?layout=blog&current={{ request.path }}"
-              hx-target="#links"
-              hx-swap="innerHTML">
-    </div>
-
     {% if is_authenticated %}
         <div id="blog-container">
             {% include "/cms_blog.jinja2" %}

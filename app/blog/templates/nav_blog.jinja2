@@ -1,0 +1,41 @@
+<div class="navbar" id="nav">
+    <div class="text-left">
+        
+    </div>
+
+    <div class="sm:block hidden" id="right-side-large">
+        <div class="flex justify-between items-center">
+            <div class="text-left" id="links">
+            <a class="link-gray" href="/feed">Feed</a>
+            <a class="link-gray" href="/blog">Blog</a>
+            <a class="link-gray" href="/projects">Exit</a>
+            </div>
+
+            <div class="link-gray text-right block" id="user_menu"
+                hx-get="/layout?menu=user_menu"
+                hx-target="#links"
+                hx-swap="innerHTML"
+                onclick="toggleButtons('user_menu', 'close_user_menu')">
+                User Menu
+            </div>
+            <div class="link-gray text-right hidden" id="close_user_menu"
+                hx-get="/layout?menu=blog"
+                hx-target="#links"
+                hx-swap="innerHTML"
+                onclick="toggleButtons('close_user_menu', 'user_menu')">
+                Close
+            </div>
+        </div>
+    </div>
+    <div class="link-gray text-right block" id="mobile_menu"
+        hx-get="/layout?menu=blog&next_page={{ request.path }}"
+        hx-target="#hero"
+        hx-swap="innerHTML"
+        onclick="toggleButtons('mobile_menu', 'close_mobile_menu')">
+        Menu
+    </div>
+    {# Add session to the layout file and use variable everywhere.#}
+    <a class="link-gray text-right hidden" id="close_mobile_menu"  href="{{ next }}">
+        Close
+    </a>
+</div>
